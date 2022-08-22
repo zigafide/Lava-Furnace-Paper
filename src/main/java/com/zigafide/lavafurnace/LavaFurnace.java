@@ -32,7 +32,7 @@ public final class LavaFurnace extends JavaPlugin {
         public void place (PlayerBucketEmptyEvent e) {
             if(e.getBucket().equals(Material.LAVA_BUCKET)){
                 Block b2 = e.getBlock().getLocation().clone().add(0,1,0).getBlock();
-                if(b2.getType().equals(Material.FURNACE)){
+                if(b2.getType().equals(Material.FURNACE)  || b2.getType().equals(Material.BLAST_FURNACE)){
                     Furnace furnace = (Furnace) b2.getState();
                     furnace.setBurnTime((short) 200);
                     furnace.update();
@@ -44,7 +44,7 @@ public final class LavaFurnace extends JavaPlugin {
         public void place (BlockFromToEvent e) {
             Block b = e.getBlock();
             Block b2 = e.getToBlock().getLocation().clone().add(0,1,0).getBlock();
-            if(b2.getType().equals(Material.FURNACE) && b.getType().equals(Material.LAVA)){
+            if((b2.getType().equals(Material.FURNACE)  || b2.getType().equals(Material.BLAST_FURNACE) )&& b.getType().equals(Material.LAVA)){
                 Furnace furnace = (Furnace) b2.getState();
                 furnace.setBurnTime((short) 200);
                 furnace.update();
